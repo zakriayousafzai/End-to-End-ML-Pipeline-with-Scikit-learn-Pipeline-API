@@ -95,6 +95,21 @@ Tiny example with 10 rows (for intuition):
 - Run 2: validate on `[3,4]`, train on all others.
 - ... until each fold has been validation once.
 
+ASCII mini-diagram:
+
+```text
+Rows:   [1,2,3,4,5,6,7,8,9,10]
+Folds:   F1  F1  F2  F2  F3  F3  F4  F4  F5  F5
+
+Run 1:  [ V   V | T   T | T   T | T   T | T   T ]  validate=F1
+Run 2:  [ T   T | V   V | T   T | T   T | T   T ]  validate=F2
+Run 3:  [ T   T | T   T | V   V | T   T | T   T ]  validate=F3
+Run 4:  [ T   T | T   T | T   T | V   V | T   T ]  validate=F4
+Run 5:  [ T   T | T   T | T   T | T   T | V   V ]  validate=F5
+
+Legend: V = validation fold, T = training folds
+```
+
 Why this helps:
 
 - Less dependent on one lucky/unlucky split.
