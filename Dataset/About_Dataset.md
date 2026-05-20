@@ -6,7 +6,7 @@ The raw data contains 7043 rows (customers) and 21 columns (features).
 
 The “Churn” column is our target.
 
-## The data set includes information about:
+## The data set includes information about
 
 - Customers who left within the last month – the column is called Churn
 - Services that each customer has signed up for – phone, multiple lines, internet, online security, online backup, device protection, tech support, and streaming TV and movies
@@ -14,6 +14,7 @@ The “Churn” column is our target.
 - Demographic info about customers – gender, age range, and if they have partners and dependents
 
 ## Data Dictionary
+
 | Column Name | Description |
 | --- | --- |
 | customerID | Customer’s unique ID |
