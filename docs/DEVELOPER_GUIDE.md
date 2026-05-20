@@ -67,6 +67,40 @@ This project uses:
 - `scoring="roc_auc"`
 - `cv=5` (5-fold cross-validation)
 
+#### What `cv=5` means (5-fold cross-validation)
+
+`cv=5` means the training data is split into 5 equal parts called **folds**.
+
+For each model/hyperparameter combination, scikit-learn trains and validates 5 times:
+
+1. Train on folds 2,3,4,5 and validate on fold 1.
+2. Train on folds 1,3,4,5 and validate on fold 2.
+3. Train on folds 1,2,4,5 and validate on fold 3.
+4. Train on folds 1,2,3,5 and validate on fold 4.
+5. Train on folds 1,2,3,4 and validate on fold 5.
+
+Then it averages the 5 validation scores. That average score is used to compare hyperparameter settings.
+
+Tiny example with 10 rows (for intuition):
+
+- Suppose rows are `[1,2,3,4,5,6,7,8,9,10]`.
+- With 5 folds, each fold has 2 rows.
+- Example fold split:
+  - Fold 1: `[1,2]`
+  - Fold 2: `[3,4]`
+  - Fold 3: `[5,6]`
+  - Fold 4: `[7,8]`
+  - Fold 5: `[9,10]`
+- Run 1: validate on `[1,2]`, train on all others.
+- Run 2: validate on `[3,4]`, train on all others.
+- ... until each fold has been validation once.
+
+Why this helps:
+
+- Less dependent on one lucky/unlucky split.
+- Every row is used for validation exactly once.
+- Gives a more stable estimate when selecting the best model.
+
 ### 5) Serialization with joblib
 
 `joblib.dump` saves Python objects efficiently. Here it saves the full best pipeline (preprocessor + model), not just model weights.
