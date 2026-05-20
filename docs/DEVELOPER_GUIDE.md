@@ -110,6 +110,8 @@ Run 5:  [ T   T | T   T | T   T | T   T | V   V ]  validate=F5
 Legend: V = validation fold, T = training folds
 ```
 
+Important: `GridSearchCV` performs this full 5-run cycle for **every** hyperparameter combination in `param_grid`, which is why training time can increase quickly as you add more candidate values.
+
 Why this helps:
 
 - Less dependent on one lucky/unlucky split.
